@@ -1,0 +1,61 @@
+{% extends 'accounts/base.html' %}
+{% block content %}
+<html>
+<head>
+<style>
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.price {
+  color: grey;
+  font-size: 16px;
+}
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 6px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 10px;
+}
+
+.card button:hover {
+  opacity: 0.7;
+}
+</style>
+</head>
+<body>
+
+<h1 style="text-align:center">Products</h1>
+{% for category in categories %}
+<a href = "{{ category.get_absolute_url }}">{{ category.name }}</a>
+{% endfor %}
+<h3>Categories{% for product in products %}</h3>
+
+
+<div class="card">
+  <tr>
+        <td><img src="{{ product.image.url }}" width=300px height=300px></td>
+        <br>
+        <td class="title">{{ product.name }}</td>
+        <br>
+        <td class="subtitle">{{ product.product_model }}</td>
+        <br>
+        <td class="description">{{ product.description }}</td>
+        <td class="money">Cost: {{ product.price }}</td>$
+        <td><a href="{% url 'home' %}"></a></td>
+  </tr>
+</div>
+    {% endfor %}
+</body>
+</html>
+{% endblock %}
